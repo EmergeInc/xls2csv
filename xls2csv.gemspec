@@ -14,4 +14,7 @@ Gem::Specification.new do |s|
   s.name        = 'xls2csv'
   s.require_paths = ['lib']
   s.version     = Xls2Csv::VERSION
+
+  s.add_dependency('spreadsheet', '>= 0.7.2')
+  s.add_dependency('slop', '>= 3.3.1')
 end

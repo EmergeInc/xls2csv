@@ -17,11 +17,15 @@ module Xls2Csv
     end
 
     def convert
-      read_xls.each {|filename, value| write_csv(filename, value)}
+      read_xls.each {|sheet_name, value| write_csv(sheet_name, value)}
     end
 
     def read_xls(xls = @xls)
-      raise Ole::Storage::FormatError unless File::extname(xls) == '.xls'
+      if a.respond_to?(:read) # File-like object
+        raise Ole::Storage::FormatError unless File::extname(xls.original_filename).downcase == '.xls'
+      else
+        raise Ole::Storage::FormatError unless File::extname(xls).downcase == '.xls'
+      end
 
       csvs = Hash.new{|hash, key| hash[key] = []}
       Spreadsheet.open(xls).worksheets.each do |sheet|
