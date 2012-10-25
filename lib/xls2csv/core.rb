@@ -21,7 +21,7 @@ module Xls2Csv
     end
 
     def read_xls(xls = @xls)
-      if a.respond_to?(:read) # File-like object
+      if xls.respond_to?(:read) # File-like object
         raise Ole::Storage::FormatError unless File::extname(xls.original_filename).downcase == '.xls'
       else
         raise Ole::Storage::FormatError unless File::extname(xls).downcase == '.xls'
@@ -54,6 +54,8 @@ module Xls2Csv
       row.map do |cell|
         if cell.class == Spreadsheet::Formula
           cell.value
+        elsif cell.class == Float
+          row.date(0).strftime('%m/%d/%Y')
         else
           cell.to_s
         end
