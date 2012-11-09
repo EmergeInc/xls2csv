@@ -54,7 +54,7 @@ module Xls2Csv
       row.map do |cell|
         if cell.class == Spreadsheet::Formula
           cell.value
-        elsif cell.class == Float
+        elsif cell.class == Fixnum
           row.date(0).strftime('%m/%d/%Y')
         else
           cell.to_s
