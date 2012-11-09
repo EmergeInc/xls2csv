@@ -12,7 +12,7 @@ module Xls2Csv
     end
 
     def start
-      Xls2Csv::Options
+      #Xls2Csv::Options
       convert
     end
 

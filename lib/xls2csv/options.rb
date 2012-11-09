@@ -3,19 +3,20 @@ require 'slop'
 
 module Xls2Csv
   module Options
+    def init
 spec = <<-SPEC
 ---
 h,help     show usage
 v,version  show version
 SPEC
 
-    begin
-      opts = Slop.optspec(spec, strict: true)
-      opts.parse
-    rescue Slop::InvalidOptionError
-      puts "xls2csv: illegal option"
-      puts "usage: xls2csv -h"
-    end
+      begin
+        opts = Slop.optspec(spec, strict: true)
+        opts.parse
+      rescue Slop::InvalidOptionError
+        puts "xls2csv: illegal option"
+        puts "usage: xls2csv -h"
+      end
 
 
 help = <<-EOF
@@ -40,14 +41,15 @@ Options:
 #{opts.to_s}
 EOF
 
-    if opts.help?
-      puts help
-      exit
-    end
+      if opts.help?
+        puts help
+        exit
+      end
 
-    if opts.version?
-      puts "xls2csv version #{Xls2Csv::VERSION.to_s}"
-      exit
+      if opts.version?
+        puts "xls2csv version #{Xls2Csv::VERSION.to_s}"
+        exit
+      end
     end
   end
 end
