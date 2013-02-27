@@ -51,15 +51,17 @@ module Xls2Csv
 
     private
     def row_to_s(row)
-      row.map do |cell|
-        if cell.class == Spreadsheet::Formula
-          cell.value
-        elsif cell.class == Fixnum
-          row.date(0).strftime('%m/%d/%Y')
-        else
-          cell.to_s
-        end
-      end
+      #binding.pry
+      row
+      #row.map do |cell|
+        #if cell.class == Spreadsheet::Formula
+          #cell.value
+        ##elsif cell.class == Fixnum
+          ##row.date(0).strftime('%m/%d/%Y')
+        #else
+          #cell.to_s
+        #end
+      #end
     end
   end
 end
